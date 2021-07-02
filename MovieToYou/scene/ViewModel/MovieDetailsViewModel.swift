@@ -5,7 +5,7 @@
 //  Created by Victor Vidal on 02/07/21.
 //
 
-import Foundation
+import UIKit
 
 class MovieDetailViewModel {
     var movieDetail: MovieDetails?
@@ -14,6 +14,10 @@ class MovieDetailViewModel {
     func fetchMovieData(){
         receiveSimilarMoveData()
         receiveDetailMoveData()
+    }
+    
+    func setupImageHeight(view: UIView) -> CGFloat {
+        return view.frame.height * 0.45
     }
     
     private func receiveDetailMoveData(){

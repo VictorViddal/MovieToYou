@@ -7,10 +7,13 @@
 
 import UIKit
 class MovieDetailsViewController: UIViewController {
+    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var movieConstraints: NSLayoutConstraint!
+    let viewmodel = MovieDetailViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        movieConstraints.constant = viewmodel.setupImageHeight(view: self.view)
     }
-
 }
 
