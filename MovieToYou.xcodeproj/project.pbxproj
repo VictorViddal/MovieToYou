@@ -16,6 +16,7 @@
 		A8552D58268ECFF800AB0AD1 /* MovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8552D57268ECFF800AB0AD1 /* MovieDetailsModel.swift */; };
 		A8552D5A268EE29200AB0AD1 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8552D59268EE29200AB0AD1 /* MovieDetailsViewModel.swift */; };
 		A8552D60268EF94E00AB0AD1 /* MovieDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8552D5F268EF94E00AB0AD1 /* MovieDetailTableViewCell.swift */; };
+		A8DF5A1A268F9CDD00CB2443 /* SimilarMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DF5A19268F9CDD00CB2443 /* SimilarMovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A8552D57268ECFF800AB0AD1 /* MovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsModel.swift; sourceTree = "<group>"; };
 		A8552D59268EE29200AB0AD1 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		A8552D5F268EF94E00AB0AD1 /* MovieDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewCell.swift; sourceTree = "<group>"; };
+		A8DF5A19268F9CDD00CB2443 /* SimilarMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				A8552D5F268EF94E00AB0AD1 /* MovieDetailTableViewCell.swift */,
+				A8DF5A19268F9CDD00CB2443 /* SimilarMovieTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				A8552D3B268E978800AB0AD1 /* AppDelegate.swift in Sources */,
 				A8552D3D268E978800AB0AD1 /* SceneDelegate.swift in Sources */,
 				A8552D60268EF94E00AB0AD1 /* MovieDetailTableViewCell.swift in Sources */,
+				A8DF5A1A268F9CDD00CB2443 /* SimilarMovieTableViewCell.swift in Sources */,
 				A8552D45268E978800AB0AD1 /* MovieToYou.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
