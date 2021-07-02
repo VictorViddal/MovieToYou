@@ -15,10 +15,10 @@ struct MovieDetails: Codable {
 
 }
 struct SimilarMovies: Codable {
-    var results: [Result]
+    var results: [Results]
 }
 
-struct Result: Codable {
+struct Results: Codable {
     var poster_path: String?
     var original_title: String?
     var release_date: String?

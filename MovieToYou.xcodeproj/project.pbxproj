@@ -14,6 +14,7 @@
 		A8552D45268E978800AB0AD1 /* MovieToYou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8552D43268E978800AB0AD1 /* MovieToYou.xcdatamodeld */; };
 		A8552D47268E978B00AB0AD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8552D46268E978B00AB0AD1 /* Assets.xcassets */; };
 		A8552D58268ECFF800AB0AD1 /* MovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8552D57268ECFF800AB0AD1 /* MovieDetailsModel.swift */; };
+		A8552D5A268EE29200AB0AD1 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8552D59268EE29200AB0AD1 /* MovieDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A8552D46268E978B00AB0AD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8552D4B268E978B00AB0AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8552D57268ECFF800AB0AD1 /* MovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsModel.swift; sourceTree = "<group>"; };
+		A8552D59268EE29200AB0AD1 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		A8552D56268ECF5600AB0AD1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A8552D59268EE29200AB0AD1 /* MovieDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			files = (
 				A8552D3F268E978800AB0AD1 /* MovieDetailsViewController.swift in Sources */,
 				A8552D58268ECFF800AB0AD1 /* MovieDetailsModel.swift in Sources */,
+				A8552D5A268EE29200AB0AD1 /* MovieDetailsViewModel.swift in Sources */,
 				A8552D3B268E978800AB0AD1 /* AppDelegate.swift in Sources */,
 				A8552D3D268E978800AB0AD1 /* SceneDelegate.swift in Sources */,
 				A8552D45268E978800AB0AD1 /* MovieToYou.xcdatamodeld in Sources */,
