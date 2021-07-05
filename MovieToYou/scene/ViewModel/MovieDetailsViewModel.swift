@@ -20,6 +20,32 @@ class MovieDetailViewModel {
         return view.frame.height * 0.45
     }
     
+    func numberInSection() -> Int{
+        guard let numberOfMovies = simiarMovies?.count else {return 1}
+        return numberOfMovies + 1
+    }
+    
+    func generateTableViewCell(indexPath: IndexPath, tableView: UITableView) -> UITableViewCell{
+        
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieDetail") as? MovieDetailTableViewCell else {return UITableViewCell()}
+            guard let views = movieDetail?.popularity else {return UITableViewCell()}
+            guard let likes = movieDetail?.vote_count else {return UITableViewCell()}
+            cell.movieName.text = movieDetail?.original_title
+            cell.movieViews.text = String(format: "%.0f", views)
+            cell.moviewLikes.text = String(likes)
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarMoviesCell") as? SimilarMovieTableViewCell else {return UITableViewCell()}
+            cell.movieName.text = simiarMovies?[indexPath.row].original_title
+            cell.movieDataRelease.text = simiarMovies?[indexPath.row].release_date
+            cell.moviePoster.image = UIImage(systemName: "pencil")
+            return cell
+        }
+        
+    }
+    
     private func receiveDetailMoveData(){
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/122?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
         let request = URLRequest(url: url)
