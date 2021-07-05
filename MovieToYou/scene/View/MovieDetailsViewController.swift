@@ -17,8 +17,12 @@ class MovieDetailsViewController: UIViewController {
         movieConstraints.constant = viewmodel.setupImageHeight(view: self.view)
         viewmodel.fetchMovieData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            guard let moviePoster = self.viewmodel.movieDetail?.poster_path else {return}
+            self.movieImage.image = self.viewmodel.receiveImageFromPath(path: moviePoster)
             self.movieTableView.reloadData()
         }
+        
+        
         
     }
 }

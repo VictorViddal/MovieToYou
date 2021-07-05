@@ -24,3 +24,4 @@ struct Results: Codable {
     var release_date: String?
     var genre_ids: [Int]?
 }
+

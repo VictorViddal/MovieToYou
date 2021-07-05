@@ -10,7 +10,7 @@ import UIKit
 class MovieDetailViewModel {
     var movieDetail: MovieDetails?
     var simiarMovies: [Results]?
-    
+    private let movieId = "122"
     func fetchMovieData(){
         receiveSimilarMoveData()
         receiveDetailMoveData()
@@ -38,16 +38,17 @@ class MovieDetailViewModel {
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarMoviesCell") as? SimilarMovieTableViewCell else {return UITableViewCell()}
-            cell.movieName.text = simiarMovies?[indexPath.row].original_title
-            cell.movieDataRelease.text = simiarMovies?[indexPath.row].release_date
-            cell.moviePoster.image = UIImage(systemName: "pencil")
+            cell.movieName.text = simiarMovies?[indexPath.row - 1].original_title
+            cell.movieDataRelease.text = simiarMovies?[indexPath.row - 1].release_date
+            guard let moviePoster = simiarMovies?[indexPath.row - 1].poster_path else {return UITableViewCell()}
+            cell.moviePoster.image = receiveImageFromPath(path: moviePoster)
             return cell
         }
         
     }
     
     private func receiveDetailMoveData(){
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/122?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             if let data = data {
@@ -62,7 +63,7 @@ class MovieDetailViewModel {
         }.resume()
     }
     private func receiveSimilarMoveData(){
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/122/similar?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)/similar?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) {[weak self] data, response, error in
             if let data = data {
@@ -75,5 +76,14 @@ class MovieDetailViewModel {
                 print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
             }
         }.resume()
+    }
+    
+    func receiveImageFromPath(path: String)-> UIImage {
+        guard let url = URL(string: "https://www.themoviedb.org/t/p/w1280\(path)") else {return UIImage()}
+            if let data = try? Data(contentsOf: url) {
+                guard let moviePoster = UIImage(data: data) else {return UIImage()}
+                return moviePoster
+            }
+        return UIImage()
     }
 }
