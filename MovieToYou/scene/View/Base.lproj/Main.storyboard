@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kZM-Zd-jvL">
-                                <rect key="frame" x="0.0" y="2.5" width="414" height="376.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kZM-Zd-jvL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="381" id="mj6-5J-odn"/>
                                 </constraints>
@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senhor dos anéis: o retorno do rei" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9b-Z3-RWq">
-                                                    <rect key="frame" x="10" y="10" width="288" height="61.5"/>
+                                                    <rect key="frame" x="10" y="10" width="284.5" height="61.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="288" id="3kw-B2-yBJ"/>
                                                         <constraint firstAttribute="height" constant="55" id="ytv-gY-J6l"/>
@@ -48,7 +48,11 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RV6-hm-ghC">
-                                                    <rect key="frame" x="385.5" y="10" width="18.5" height="22"/>
+                                                    <rect key="frame" x="382" y="10" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="Zxj-Kb-nfu"/>
+                                                        <constraint firstAttribute="height" constant="22" id="sn4-WJ-HTP"/>
+                                                    </constraints>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="heart" catalog="system"/>
                                                     <connections>
@@ -180,7 +184,6 @@
         <image name="circle.bottomhalf.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

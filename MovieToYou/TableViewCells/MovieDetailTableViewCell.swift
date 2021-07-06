@@ -26,9 +26,9 @@ class MovieDetailTableViewCell: UITableViewCell {
     @IBAction func favorite(_ sender: UIButton) {
         didTapFavoriteButton.toggle()
         if didTapFavoriteButton{
-            sender.setImage(UIImage(systemName: "Heart.fill"), for: .normal)
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            sender.setImage(UIImage(systemName: "Heart"), for: .normal)
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
     

@@ -11,6 +11,7 @@ class MovieDetailViewModel {
     var movieDetail: MovieDetails?
     var simiarMovies: [Results]?
     private let movieId = "122"
+    var posterImages: [UIImage] = []
     func fetchMovieData(){
         receiveSimilarMoveData()
         receiveDetailMoveData()
@@ -39,9 +40,9 @@ class MovieDetailViewModel {
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarMoviesCell") as? SimilarMovieTableViewCell else {return UITableViewCell()}
             cell.movieName.text = simiarMovies?[indexPath.row - 1].original_title
-            cell.movieDataRelease.text = simiarMovies?[indexPath.row - 1].release_date
-            guard let moviePoster = simiarMovies?[indexPath.row - 1].poster_path else {return UITableViewCell()}
-            cell.moviePoster.image = receiveImageFromPath(path: moviePoster)
+            cell.movieDataRelease.text = similarMovieInformation(release: simiarMovies?[indexPath.row - 1].release_date, genresIds: simiarMovies?[indexPath.row - 1].genre_ids)
+            //guard let moviePoster = simiarMovies?[indexPath.row - 1].poster_path else {return UITableViewCell()}
+            cell.moviePoster.image = posterImages[indexPath.row - 1]
             return cell
         }
         
@@ -70,6 +71,7 @@ class MovieDetailViewModel {
                 if let decodedResponse = try? JSONDecoder().decode(SimilarMovies.self, from: data) {
                     DispatchQueue.main.async {
                         self?.simiarMovies = decodedResponse.results
+                        self?.allSimilarMoviePost(similarMoviesList: self?.simiarMovies)
                     }
                     return
                 }
@@ -86,4 +88,26 @@ class MovieDetailViewModel {
             }
         return UIImage()
     }
+    private func allSimilarMoviePost(similarMoviesList: [Results]?)  {
+        guard let moviesImage = similarMoviesList else {return}
+        for poster in moviesImage{
+            guard let moviePoster = poster.poster_path else {return}
+            posterImages.append(receiveImageFromPath(path: moviePoster))
+        }
+        
+        
+    }
+    private func similarMovieInformation(release: String?,genresIds:[Int]?) -> String{
+        guard let releaseDate = release?.prefix(4) else {return String()}
+        guard let genres = genresIds else {return String()}
+        var movieGenreArray: [String] = []
+        for type in genres {
+            guard let movieGenre = movieGenres[type] else{return ""}
+            movieGenreArray.append(movieGenre)
+        }
+        let movieInformation = releaseDate + "  " + movieGenreArray.joined(separator: ", ")
+        
+        return movieInformation
+    }
 }
+
