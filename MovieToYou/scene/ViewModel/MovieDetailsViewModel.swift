@@ -90,7 +90,7 @@ class MovieDetailViewModel {
         }.resume()
     }
     
-    // Make Requst from image by poster_path
+    // Make Request from image by poster_path
     func receiveImageFromPath(path: String)-> UIImage {
 
         guard let url = URL(string: "https://www.themoviedb.org/t/p/w1280\(path)") else {return UIImage()}
@@ -111,7 +111,7 @@ class MovieDetailViewModel {
         }
     }
     
-    // tranform relase and genre Ids in format "ReleasaYar <genres1, genre2, ...>"
+    // Transform relase and genre Ids in format "ReleasaYar <genres1, genre2, ...>"
     private func similarMovieInformation(release: String?,genresIds:[Int]?) -> String{
         
         guard let releaseDate = release?.prefix(4) else {return String()}
