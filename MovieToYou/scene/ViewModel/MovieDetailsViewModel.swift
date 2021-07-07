@@ -6,12 +6,17 @@
 //
 
 import UIKit
-
+protocol MovieDetailViewModelDelegate: AnyObject{
+    // delegate to load TableView when fetch movies Data
+    func didLoadMovies()
+}
 class MovieDetailViewModel {
     var movieDetail: MovieDetails?
     var simiarMovies: [Results]?
+    weak var delegate: MovieDetailViewModelDelegate?
     private let movieId = "122"
     var posterImages: [UIImage] = []
+    
     func fetchMovieData(){
         receiveSimilarMoveData()
         receiveDetailMoveData()
@@ -41,14 +46,15 @@ class MovieDetailViewModel {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimilarMoviesCell") as? SimilarMovieTableViewCell else {return UITableViewCell()}
             cell.movieName.text = simiarMovies?[indexPath.row - 1].original_title
             cell.movieDataRelease.text = similarMovieInformation(release: simiarMovies?[indexPath.row - 1].release_date, genresIds: simiarMovies?[indexPath.row - 1].genre_ids)
-            //guard let moviePoster = simiarMovies?[indexPath.row - 1].poster_path else {return UITableViewCell()}
             cell.moviePoster.image = posterImages[indexPath.row - 1]
             return cell
         }
         
     }
     
+    // Make APIRequest from movie details URL
     private func receiveDetailMoveData(){
+
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
@@ -56,6 +62,7 @@ class MovieDetailViewModel {
                 if let decodedResponse = try? JSONDecoder().decode(MovieDetails.self, from: data) {
                     DispatchQueue.main.async {
                         self?.movieDetail = decodedResponse
+                        self?.delegate?.didLoadMovies()
                     }
                     return
                 }
@@ -63,7 +70,10 @@ class MovieDetailViewModel {
             }
         }.resume()
     }
+    
+    // Make APIRequest from similarMovies URL
     private func receiveSimilarMoveData(){
+
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)/similar?api_key=7c04bfa24c6cdf62a15ef9edcd3f3065") else{ fatalError("couldn't connect with url")}
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) {[weak self] data, response, error in
@@ -80,7 +90,9 @@ class MovieDetailViewModel {
         }.resume()
     }
     
+    // Make Requst from image by poster_path
     func receiveImageFromPath(path: String)-> UIImage {
+
         guard let url = URL(string: "https://www.themoviedb.org/t/p/w1280\(path)") else {return UIImage()}
             if let data = try? Data(contentsOf: url) {
                 guard let moviePoster = UIImage(data: data) else {return UIImage()}
@@ -88,16 +100,20 @@ class MovieDetailViewModel {
             }
         return UIImage()
     }
+    
+    // Save all poster image in local var to faster access
     private func allSimilarMoviePost(similarMoviesList: [Results]?)  {
+
         guard let moviesImage = similarMoviesList else {return}
         for poster in moviesImage{
             guard let moviePoster = poster.poster_path else {return}
             posterImages.append(receiveImageFromPath(path: moviePoster))
         }
-        
-        
     }
+    
+    // tranform relase and genre Ids in format "ReleasaYar <genres1, genre2, ...>"
     private func similarMovieInformation(release: String?,genresIds:[Int]?) -> String{
+        
         guard let releaseDate = release?.prefix(4) else {return String()}
         guard let genres = genresIds else {return String()}
         var movieGenreArray: [String] = []
@@ -106,7 +122,6 @@ class MovieDetailViewModel {
             movieGenreArray.append(movieGenre)
         }
         let movieInformation = releaseDate + "  " + movieGenreArray.joined(separator: ", ")
-        
         return movieInformation
     }
 }
