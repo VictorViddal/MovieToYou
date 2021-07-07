@@ -7,5 +7,6 @@ Swift 5
 Xcode 12.5.1
 
 Using
-To change de movie that appears on app change de movieId on MovieDetailViewModel, its automaticaly fetch data from https://api.themoviedb.org/3
+
+To change The movie that appears on app change de movieId on MovieDetailViewModel, its automaticaly fetch data from https://api.themoviedb.org/3
 
